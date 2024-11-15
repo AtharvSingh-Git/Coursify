@@ -7,8 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-src\components\ui\background-lines.tsx
-src\components\ui\meteors.tsx
+src/components/ui/background-lines.tsx
+src/components/ui/meteors.tsx
+src/components/FeatureCard.tsx
 
 node_modules
 dist
