@@ -4,7 +4,25 @@ import { ModeToggle } from "./ModeToggle";
 import { BsCalendar4Week } from "react-icons/bs";
 
 
-const Navbar = () => {
+const Navbar = ({scrollToSection, FeatureSection, TestimonialSection, CourseoftheWeekSection }) => {
+    const getSection = (item) =>{
+        switch(item){
+            case "Features":
+                return FeatureSection;
+            case "Testimonials":
+                return TestimonialSection;
+            case "Course of the Week":
+                return CourseoftheWeekSection;
+            default:
+                return null    
+        }
+    }
+    const handleClick =(item)=>{
+        const sectionRef = getSection(item);
+        if (sectionRef) {
+            scrollToSection(sectionRef);
+        }
+    }
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-filter backdrop-blur-lg border-b border-border">
             <div className="w-full mx-auto px-4 py-4 flex justify-between items-center">
@@ -14,9 +32,9 @@ const Navbar = () => {
                     </svg>
                     <h1 className="text-2xl font-semibold text-foreground">Coursify</h1>
                     <div id="page-items" className="hidden md:flex ml-12 space-x-4">
-                        <Button variant="link" className="text-foreground hover:text-foreground/80 border-0">Features</Button>
-                        <Button variant="link" className="text-foreground hover:text-foreground/80 border-0">Testimonials</Button>
-                        <Button variant="link" className="text-foreground hover:text-foreground/80 border-0">Pricing</Button>
+                        <Button variant="link" onClick={()=>handleClick("Features")} className="text-foreground hover:text-foreground/80 border-0">Features</Button>
+                        <Button variant="link" onClick={()=>handleClick("Testimonials")} className="text-foreground hover:text-foreground/80 border-0">Testimonials</Button>
+                        <Button variant="link" onClick="" className="text-foreground hover:text-foreground/80 border-0">Pricing</Button>
                     </div>
                 </div>
 
@@ -28,7 +46,7 @@ const Navbar = () => {
                 </div>
 
                 <div id="socials" className="flex items-center space-x-2">
-                    <Button variant="secondary" size="" className="text-foreground hover:text-foreground/80 border-0" >
+                    <Button variant="secondary" size="" onClick={()=>handleClick("Course of the Week")} className="hidden md:flex text-foreground hover:text-foreground/80 border-0" >
                     Course of the Week <BsCalendar4Week/>
                     </Button>
                     <Button size="icon" variant="ghost" className="text-foreground hover:text-foreground/80 border-0">

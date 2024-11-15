@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import Navbar from '../components/Navbar'
 import { BookOpen, Clock, Award, Zap, ChevronRight, } from 'lucide-react'
 import { BsCalendar4Week } from "react-icons/bs";
@@ -10,9 +11,24 @@ import { CourseOfTheWeek } from '@/components/Course-of-the-week';
 import{Hero} from '@/components/Hero';
 const Landing = () => {
 
+    // Adding References for each Section
+    const FeatureSection = useRef(null);
+    const TestimonialSection = useRef(null);
+    const CourseoftheWeekSection = useRef(null);
+
+    const scrollToSection = (ref) => {
+        ref.current.scrollIntoView({ behavior: 'smooth' });
+        const navbarHeight = document.querySeclector('nav').offsetHeight;
+        const elementPosition = ref.current.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+        console.log(navbarHeight, elementPosition, offsetPosition);
+        
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
+
     return (
         <div className="min-h-screen w-full bg-background text-foreground">
-            <Navbar />
+            <Navbar scrollToSection={scrollToSection} FeatureSection={FeatureSection} TestimonialSection={TestimonialSection} CourseoftheWeekSection={CourseoftheWeekSection} />
             <main className="border-2 border-border min-h-screen w-screen  items-center justify-center pt-20 ">
                 <StarsBackground starDensity={0.00025} />
                 <ShootingStars starColor="#000000" trailColor="#FFFFFF" starHeight={4} starWidth={15} minDelay={1000} maxDelay={3000} />
@@ -35,10 +51,11 @@ const Landing = () => {
 
                 </section>
 
-                <section id="features" className="py-12">
+                <section id="features" className="py-12"  ref={FeatureSection} > 
                     <div className='container mx-auto px-4 '>
-                        <h3 className='text-3xl text-foreground font-semibold text-center mb-12'>Features</h3>
+                        <h3  className='text-3xl text-foreground font-semibold text-center mb-12'>Features</h3>
                         <div
+                        
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-10 max-w-7xl mx-auto ">
                             <FeaturesSection icon={<Clock />} title="Quick Delivery" description="Get your course in minutes" index={0} />
                             <FeaturesSection icon={<BookOpen />} title="Customizable" description="Tailor your course to your needs" index={1} />
@@ -48,7 +65,7 @@ const Landing = () => {
                     </div>
                 </section>
 
-                <section id="testimonials" className='py-12'>
+                <section id="testimonials" className='py-12' ref={TestimonialSection}>
                     <div className='container mx-auto px-4'>
                         <h3 className='text-3xl font-semibold text-foreground text-center mb-12'>What Our Users Say</h3>
                         <div>
@@ -57,7 +74,7 @@ const Landing = () => {
                     </div>
                 </section>
 
-                <section id="course-of-the-day" className='py-12'>
+                <section id="course-of-the-day" className='py-12' ref={CourseoftheWeekSection}>
                     <div className='container mx-auto px-4'>
                         <div id="heading" className='flex flex-row justify-center gap-2'>
                             <h3 className='flex text-3xl font-semibold text-foreground text-center mb-12'>Course of the Week </h3>

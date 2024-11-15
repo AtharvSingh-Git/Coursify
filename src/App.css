@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  section{
+    scroll-margin-top: 5rem; /* navbar height */
+  }
   :root {
     --color-white: 0 0% 100%;
     --color-black: 0 0% 0%;

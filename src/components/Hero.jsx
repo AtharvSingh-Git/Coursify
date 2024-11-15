@@ -25,7 +25,7 @@ export function Hero() {
             <h1 className='bg-gradient-to-br from-foreground to-foreground/60 bg-clip-text text-center text-2xl font-medium leading-tight text-transparent sm:text-4xl sm:leading-tight md:text-6xl md:leading-tight mb-6'>
                 Generate Your Perfect <span className='text-primary'>Course</span> <br /> in Seconds
             </h1>
-            <p className="text-lg md:text-xl text-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-md  md:text-xl text-foreground max-w-2xl mx-auto mb-8">
                 Harness the power of AI to create personalized learning journeys tailored to your needs and interests.
             </p>
             <div className='flex justify-center space-x-4'>
